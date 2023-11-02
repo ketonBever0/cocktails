@@ -11,8 +11,9 @@ datasource db {
 }
 
 model Feedback {
-  id String @id @default(uuid())
-  title String
-  details String
+  id        String   @id @default(uuid())
+  title     String
+  details   String
   createdAt DateTime @default(now())
+  completed      Boolean  @default(false)
 }

@@ -4,6 +4,7 @@ import { createContext, useState } from "react";
 import { Cocktail, FilterType, SelectedFilterType } from "../types/CocktailTypes";
 import axios, { AxiosResponse } from "axios";
 import toast from "react-hot-toast";
+import { env } from "process";
 
 const CocktailContext = createContext<any | null>(null);
 
@@ -15,7 +16,7 @@ export const CocktailProvider = ({ children }: any) => {
   const getHeroCocktail = async (id: number | string) => {
     setHeroCocktailPending(true);
     await axios
-      .get("https://www.thecocktaildb.com/api/json/v1/1/random.php")
+      .get(`${process.env.COCKTAILS_URL}/api/json/v1/1/random.php`)
       .then((res: AxiosResponse) => {
         if (res.data.drinks[0]) {
           setHeroCocktail(res.data.drinks[0]);
@@ -51,8 +52,8 @@ export const CocktailProvider = ({ children }: any) => {
   const [cocktailsPending, setCocktailsPending] = useState<boolean>(false);
 
   const getCocktailsByName = async (name: string) => {
-      setCocktailsPending(true);
-      setCocktails([]);
+    setCocktailsPending(true);
+    setCocktails([]);
     await axios
       .get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`)
       .then((res: AxiosResponse) => {
@@ -64,8 +65,8 @@ export const CocktailProvider = ({ children }: any) => {
   };
 
   const getCocktailsByFirstLetter = (letter: string) => {
-      setCocktailsPending(true);
-      setCocktails([]);
+    setCocktailsPending(true);
+    setCocktails([]);
     //   console.log(letter.toLowerCase());
     axios
       .get(
@@ -94,47 +95,47 @@ export const CocktailProvider = ({ children }: any) => {
 
     // CATEGORIES
     await axios.get("https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list")
-    .then((res: AxiosResponse) => {
-      if(res.data.drinks) {
-        setCocktailFilters((prev: FilterType) => ({
-          ...prev,
-          categories: res.data.drinks
-        }))
-      }
-    })
+      .then((res: AxiosResponse) => {
+        if (res.data.drinks) {
+          setCocktailFilters((prev: FilterType) => ({
+            ...prev,
+            categories: res.data.drinks
+          }))
+        }
+      })
 
     // GLASSES
     await axios.get("https://www.thecocktaildb.com/api/json/v1/1/list.php?g=list")
-    .then((res: AxiosResponse) => {
-      if(res.data.drinks) {
-        setCocktailFilters((prev: FilterType) => ({
-          ...prev,
-          glasses: res.data.drinks
-        }))
-      }
-    })
-    
+      .then((res: AxiosResponse) => {
+        if (res.data.drinks) {
+          setCocktailFilters((prev: FilterType) => ({
+            ...prev,
+            glasses: res.data.drinks
+          }))
+        }
+      })
+
     // INGREDIENTS
     await axios.get("https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list")
-    .then((res: AxiosResponse) => {
-      if(res.data.drinks) {
-        setCocktailFilters((prev: FilterType) => ({
-          ...prev,
-          ingredients: res.data.drinks
-        }))
-      }
-    })
+      .then((res: AxiosResponse) => {
+        if (res.data.drinks) {
+          setCocktailFilters((prev: FilterType) => ({
+            ...prev,
+            ingredients: res.data.drinks
+          }))
+        }
+      })
 
     // ALCOHOLIC
     await axios.get("https://www.thecocktaildb.com/api/json/v1/1/list.php?a=list")
-    .then((res: AxiosResponse) => {
-      if(res.data.drinks) {
-        setCocktailFilters((prev: FilterType) => ({
-          ...prev,
-          alcoholic: res.data.drinks
-        }))
-      }
-    })
+      .then((res: AxiosResponse) => {
+        if (res.data.drinks) {
+          setCocktailFilters((prev: FilterType) => ({
+            ...prev,
+            alcoholic: res.data.drinks
+          }))
+        }
+      })
     setCocktailFiltersPending(false);
   }
 

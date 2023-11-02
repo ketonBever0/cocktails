@@ -5,13 +5,13 @@ import { FeedbackProvider } from "@/providers/FeedbackContext"
 export const Providers = ({ children }: any) => {
     return (
         <CocktailProvider>
-            {/* <FeedbackProvider> */}
+            <FeedbackProvider>
 
 
                 {children}
 
 
-            {/* </FeedbackProvider> */}
+            </FeedbackProvider>
         </CocktailProvider>
     )
 }

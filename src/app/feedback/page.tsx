@@ -2,6 +2,7 @@
 
 import { FeedbackElement } from "@/components/FeedbackElement";
 import FeedbackContext from "@/providers/FeedbackContext";
+import { FeedbackType } from "@/types/FeedbackTypes";
 import { Metadata } from "next";
 import { useContext, useEffect } from "react";
 
@@ -12,8 +13,18 @@ import { useContext, useEffect } from "react";
 
 export default function Feedbacks() {
 
+    const {
+        feedbacks,
+        feedbacksPending,
+        getFeedbacks,
+        feedbacksRefresh
+    } = useContext(FeedbackContext);
 
 
+    useEffect(() => {
+        getFeedbacks();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [feedbacksRefresh])
 
 
 
@@ -48,23 +59,27 @@ export default function Feedbacks() {
                 </label> */}
             </div>
 
-
-            <div className="overflow-x-auto mt-20">
-                <table className="table">
-                    {/* head */}
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>About</th>
-                            <th>Details</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <FeedbackElement />
-                    </tbody>
-                </table>
-            </div>
-
+            {
+                !feedbacksPending &&
+                <div className="overflow-x-auto mt-20">
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>About</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                feedbacks.map((feedback: FeedbackType) => (
+                                    <FeedbackElement {...feedback} key={feedback.id} />
+                                ))
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
         </div>
     )
 }

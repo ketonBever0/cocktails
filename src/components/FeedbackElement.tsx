@@ -1,11 +1,13 @@
-export function FeedbackElement() {
+import { FeedbackType } from "@/types/FeedbackTypes";
+
+export function FeedbackElement(feedback: FeedbackType) {
 
 
     return (
         <tr>
-            <th>1</th>
-            <td>Quality Control Specialist</td>
-            <td>Blue</td>
+            <th>{feedback.createdAt}</th>
+            <td>{feedback.title}</td>
+            <td>{feedback.details}</td>
         </tr>
     )
 }

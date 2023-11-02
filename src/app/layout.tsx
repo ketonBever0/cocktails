@@ -43,7 +43,7 @@ export default function RootLayout({
                   </details>
                 </li>
                 <li>
-                  {/* <Link href="/feedback">Feedback</Link> */}
+                  <Link href="/feedback">Feedback</Link>
                 </li>
               </ul>
             </div>
