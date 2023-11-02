@@ -15,7 +15,11 @@ export const FeedbackProvider = ({ children }: any) => {
 
     const getFeedbacks = () => {
         setFeedbacksPending(true);
-        axios.get(`${process.env.HOST}/api/feedback`)
+        axios.get(`${process.env.HOST}/api/feedback`, {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
             .then((res: AxiosResponse) => {
                 if (res.status == 200) {
                     setFeedbacks(res.data);
