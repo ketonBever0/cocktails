@@ -15,6 +15,9 @@ export async function GET() {
     orderBy: {
       createdAt: "desc",
     },
+    where: {
+      completed: false,
+    },
     cacheStrategy: { swr: 60, ttl: 60 },
   });
   return NextResponse.json(response, { status: 200 });

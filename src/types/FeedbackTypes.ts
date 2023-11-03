@@ -5,3 +5,8 @@ export type FeedbackType = {
   createdAt: string;
   completed: boolean;
 };
+
+export type PostFeedbackType = {
+  title: string;
+  details: string;
+};

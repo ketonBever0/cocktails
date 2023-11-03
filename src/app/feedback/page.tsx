@@ -2,9 +2,10 @@
 
 import { FeedbackElement } from "@/components/FeedbackElement";
 import FeedbackContext from "@/providers/FeedbackContext";
-import { FeedbackType } from "@/types/FeedbackTypes";
+import { FeedbackType, PostFeedbackType, } from "@/types/FeedbackTypes";
+import axios, { AxiosResponse } from "axios";
 import { Metadata } from "next";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 
 // export const metadata: Metadata = {
 //     title: "Cocktails Feedback",
@@ -17,7 +18,8 @@ export default function Feedbacks() {
         feedbacks,
         feedbacksPending,
         getFeedbacks,
-        feedbacksRefresh
+        feedbacksRefresh,
+        feedbacksUpdate
     } = useContext(FeedbackContext);
 
 
@@ -27,6 +29,28 @@ export default function Feedbacks() {
     }, [feedbacksRefresh])
 
 
+    const [sendFeedbackForm, setSendFeedbackForm] = useState<PostFeedbackType>({
+        title: "",
+        details: ""
+    });
+
+
+    const changeSendFeedbackForm = (e: any) => {
+        setSendFeedbackForm((prev: PostFeedbackType) => ({
+            ...prev,
+            [e.target.name]: e.target.value
+        }));
+    }
+
+    const sendFeedback = () => {
+        axios.post(`${process.env.HOST}/api/feedback`, sendFeedbackForm)
+            .then((res: AxiosResponse) => {
+                if (res.status == 201) feedbacksUpdate();
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
 
 
     return (
@@ -40,7 +64,11 @@ export default function Feedbacks() {
                     <span className="label-text">About/When?</span>
                     {/* <span className="label-text-alt">Top Right label</span> */}
                 </label>
-                <input type="text" placeholder="" className="input input-bordered w-full max-w-xs" />
+                <input type="text" placeholder="" className="input input-bordered w-full max-w-xs"
+                    name="title"
+                    value={sendFeedbackForm.title}
+                    onChange={changeSendFeedbackForm}
+                />
                 {/* <label className="label">
                     <span className="label-text-alt">Bottom Left label</span>
                     <span className="label-text-alt">Bottom Right label</span>
@@ -52,11 +80,22 @@ export default function Feedbacks() {
                     <span className="label-text">Details</span>
                     {/* <span className="label-text-alt">Top Right label</span> */}
                 </label>
-                <textarea className="textarea h-44" placeholder=""></textarea>
+                <textarea className="textarea h-44" placeholder=""
+                    name="details"
+                    value={sendFeedbackForm.details}
+                    onChange={changeSendFeedbackForm}
+                />
                 {/* <label className="label">
                     <span className="label-text-alt">Bottom Left label</span>
                     <span className="label-text-alt">Bottom Right label</span>
                 </label> */}
+
+                <button
+                className="btn btn-secondary mt-6 w-1/2 mx-auto"
+                onClick={() => {
+                    sendFeedback();
+                }}>Send Feedback</button>
+
             </div>
 
             {
@@ -72,9 +111,10 @@ export default function Feedbacks() {
                         </thead>
                         <tbody>
                             {
-                                feedbacks.map((feedback: FeedbackType) => (
-                                    <FeedbackElement {...feedback} key={feedback.id} />
-                                ))
+                                feedbacks
+                                    .map((feedback: FeedbackType) => (
+                                        <FeedbackElement {...feedback} key={feedback.id} />
+                                    ))
                             }
                         </tbody>
                     </table>

@@ -31,7 +31,7 @@ export const FeedbackProvider = ({ children }: any) => {
             })
     }
 
-    const feedbackUpdate = () => {
+    const feedbacksUpdate = () => {
         setFeedbacksRefresh((prev: boolean) => (!prev));
     }
 
@@ -43,7 +43,7 @@ export const FeedbackProvider = ({ children }: any) => {
             feedbacks,
             feedbacksPending,
             feedbacksRefresh,
-            feedbackUpdate
+            feedbacksUpdate
         }}>{children}</FeedbackContext.Provider>
 }
 export default FeedbackContext;
