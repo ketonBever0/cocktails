@@ -66,7 +66,7 @@ export default function AllFilters() {
   }
 
   return (
-    <div className="grid grid-flow-col grid-cols-3 place-content-around gap-10">
+    <div className="grid lg:grid-flow-col lg:grid-cols-3 place-content-around gap-10">
       {/* START */}
       <div>
         {/* <label className="label">
@@ -160,6 +160,7 @@ export default function AllFilters() {
             </form>
           </div>
         )}
+
       </div>
 
       <div>
@@ -207,7 +208,7 @@ export default function AllFilters() {
       </div>
 
       <div>
-      <div className="form-control w-52">
+        <div className="form-control w-52">
           <label className="label">
             <span className="label-text">Ingredient:</span>
           </label>

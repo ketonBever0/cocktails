@@ -27,14 +27,17 @@ export default function MainRandomCocktailCard() {
                     <div className="card-body">
                         <h2 className="card-title">
                             {cocktail.strDrink}
-                            {cocktail.strAlcoholic == "Alcoholic" && <div className="badge badge-error">{cocktail.strAlcoholic}</div>}
+                            {cocktail.strAlcoholic == "Alcoholic" && <div className="badge badge-error cursor-default">{cocktail.strAlcoholic}</div>}
+                            {cocktail.strAlcoholic == "Optional alcohol" && <div className="badge badge-warning cursor-default">{cocktail.strAlcoholic}</div>}
                         </h2>
                         <p>{cocktail.strInstructions}</p>
                         <div className="card-actions justify-end">
-                            <div className="badge badge-outline">{cocktail.strGlass}</div>
-                            <div className="badge badge-outline">{cocktail.strCategory}</div>
+                            <div className="badge badge-secondary cursor-default" title="Glass">{cocktail.strGlass}</div>
+                            <div className="badge badge-outline cursor-default" title="Category">{cocktail.strCategory}</div>
                             <br />
-                            <MainFeelingLuckyBtn title="Again..." />
+                            <div className="mt-4">
+                                <MainFeelingLuckyBtn title="Again..." />
+                            </div>
                         </div>
                     </div>
                 </div>}

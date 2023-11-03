@@ -53,8 +53,8 @@ export default function AllCocktails() {
       {/* END: Filters */}
       {/* START: Listing */}
 
-      <div className="mt-5">
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="mt-10">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8">
           {!cocktailsPending &&
             cocktails.length != 0 &&
             cocktails
@@ -76,12 +76,13 @@ export default function AllCocktails() {
                 <div className="card-body">
                   <h2 className="card-title">
                     {cocktail.strDrink}
-                    {cocktail.strAlcoholic == "Alcoholic" && <div className="badge badge-error">{cocktail.strAlcoholic}</div>}
+                    {cocktail.strAlcoholic == "Alcoholic" && <div className="badge badge-error cursor-default">{cocktail.strAlcoholic}</div>}
+                    {cocktail.strAlcoholic == "Optional alcohol" && <div className="badge badge-warning cursor-default">{cocktail.strAlcoholic}</div>}
                   </h2>
-                  <p>{cocktail.strInstructions}</p>
+                  <p className="mt-2 mb-4">{cocktail.strInstructions}</p>
                   <div className="card-actions justify-end">
-                    <div className="badge badge-outline">{cocktail.strGlass}</div>
-                    <div className="badge badge-outline">{cocktail.strCategory}</div>
+                    <div className="badge badge-secondary cursor-default" title="Glass">{cocktail.strGlass}</div>
+                    <div className="badge badge-outline cursor-default" title="Category">{cocktail.strCategory}</div>
                   </div>
                 </div>
               </div>
