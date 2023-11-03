@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import prisma from "&/prisma/client";
+import { env } from "process";
 export const dynamic = "force-static";
 
 const createFeedbackSchema = z.object({
@@ -9,6 +10,7 @@ const createFeedbackSchema = z.object({
 });
 
 export async function GET() {
+  console.log(env.DIRECT_DATABASE_URL);
   const response = await prisma.feedback.findMany({
     orderBy: {
       createdAt: "desc",
