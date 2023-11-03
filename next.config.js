@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export",
+  // output: "export",
   images: {
-    unoptimized: true,
+    // unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
@@ -12,8 +12,8 @@ const nextConfig = {
   },
   env: {
     COCKTAILS_URL: "https://www.thecocktaildb.com",
-    // HOST: "http://localhost:3000",
-    HOST: "https://cocktails-nine-tawny.vercel.app/",
+    HOST: "http://localhost:3000",
+    // HOST: "https://cocktails-nine-tawny.vercel.app/",
   },
 };
 
