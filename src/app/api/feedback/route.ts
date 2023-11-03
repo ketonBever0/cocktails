@@ -10,7 +10,7 @@ const createFeedbackSchema = z.object({
 });
 
 export async function GET() {
-  console.log(env.DIRECT_DATABASE_URL);
+  // console.log(env.DIRECT_DATABASE_URL);
   const response = await prisma.feedback.findMany({
     orderBy: {
       createdAt: "desc",
