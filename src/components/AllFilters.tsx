@@ -75,7 +75,7 @@ export default function AllFilters() {
 
         <div className="form-control w-52">
           <span className="label-text text-lg">
-            Search By {searchFilterOption}
+            Search By {searchFilterOption == "name" ? "Name" : "First Letter"}
           </span>
           <label className="label cursor-pointer">
             <span className="label-text">Name</span>

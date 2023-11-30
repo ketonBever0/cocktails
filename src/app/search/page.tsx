@@ -13,7 +13,7 @@ export default function AllCocktails() {
     selectedFilter
   } = useContext(CocktailContext);
 
-  
+
 
   return (
     <div>
@@ -58,35 +58,53 @@ export default function AllCocktails() {
           {!cocktailsPending &&
             cocktails.length != 0 &&
             cocktails
-            .filter((x: Cocktail) => x.strCategory == (selectedFilter.category != "" ? selectedFilter.category : x.strCategory))
-            .filter((x: Cocktail) => x.strGlass == (selectedFilter.glass != "" ? selectedFilter.glass : x.strGlass))
-            .filter((x: Cocktail) => (x.strIngredient1 || x.strIngredient2 || x.strIngredient3 || x.strIngredient4 || x.strIngredient5 || x.strIngredient6 || x.strIngredient7 || x.strIngredient8 || x.strIngredient9 || x.strIngredient10 || x.strIngredient11 || x.strIngredient12 || x.strIngredient13 || x.strIngredient14 || x.strIngredient15) == (selectedFilter.ingredient != "" ? selectedFilter.ingredient : (x.strIngredient1 || x.strIngredient2 || x.strIngredient3 || x.strIngredient4 || x.strIngredient5 || x.strIngredient6 || x.strIngredient7 || x.strIngredient8 || x.strIngredient9 || x.strIngredient10 || x.strIngredient11 || x.strIngredient12 || x.strIngredient13 || x.strIngredient14 || x.strIngredient15)))
-            .filter((x: Cocktail) => x.strAlcoholic == (selectedFilter.alcoholic != "" ? selectedFilter.alcoholic : x.strAlcoholic))
-            .map((cocktail: Cocktail, index: React.Key) => (
-              <div className="card w-96 bg-base-100 shadow-xl" key={index}>
-                <figure>
-                  <Image
-                    src={cocktail.strDrinkThumb}
-                    alt={`Picture of ${cocktail.strDrink}`}
-                    width={300}
-                    height={300}
-                    className="mt-4 rounded-md"
-                  />
-                </figure>
-                <div className="card-body">
-                  <h2 className="card-title">
-                    {cocktail.strDrink}
-                    {cocktail.strAlcoholic == "Alcoholic" && <div className="badge badge-error cursor-default">{cocktail.strAlcoholic}</div>}
-                    {cocktail.strAlcoholic == "Optional alcohol" && <div className="badge badge-warning cursor-default">{cocktail.strAlcoholic}</div>}
-                  </h2>
-                  <p className="mt-2 mb-4">{cocktail.strInstructions}</p>
-                  <div className="card-actions justify-end">
-                    <div className="badge badge-secondary cursor-default" title="Glass">{cocktail.strGlass}</div>
-                    <div className="badge badge-outline cursor-default" title="Category">{cocktail.strCategory}</div>
+              .filter((x: Cocktail) => x.strCategory == (selectedFilter.category != "" ? selectedFilter.category : x.strCategory))
+              .filter((x: Cocktail) => x.strGlass == (selectedFilter.glass != "" ? selectedFilter.glass : x.strGlass))
+              .filter((x: Cocktail) => (
+                selectedFilter.ingredient != "" ? (
+                  selectedFilter.ingredient == x.strIngredient1 ||
+                  selectedFilter.ingredient == x.strIngredient2 ||
+                  selectedFilter.ingredient == x.strIngredient3 ||
+                  selectedFilter.ingredient == x.strIngredient4 ||
+                  selectedFilter.ingredient == x.strIngredient5 ||
+                  selectedFilter.ingredient == x.strIngredient6 ||
+                  selectedFilter.ingredient == x.strIngredient7 ||
+                  selectedFilter.ingredient == x.strIngredient8 ||
+                  selectedFilter.ingredient == x.strIngredient9 ||
+                  selectedFilter.ingredient == x.strIngredient10 ||
+                  selectedFilter.ingredient == x.strIngredient11 ||
+                  selectedFilter.ingredient == x.strIngredient12 ||
+                  selectedFilter.ingredient == x.strIngredient13 ||
+                  selectedFilter.ingredient == x.strIngredient14 ||
+                  selectedFilter.ingredient == x.strIngredient15
+                ) : 1 == 1
+              ))
+              .filter((x: Cocktail) => x.strAlcoholic == (selectedFilter.alcoholic != "" ? selectedFilter.alcoholic : x.strAlcoholic))
+              .map((cocktail: Cocktail, index: React.Key) => (
+                <div className="card w-96 bg-base-100 shadow-xl" key={index}>
+                  <figure>
+                    <Image
+                      src={cocktail.strDrinkThumb}
+                      alt={`Picture of ${cocktail.strDrink}`}
+                      width={300}
+                      height={300}
+                      className="mt-4 rounded-md"
+                    />
+                  </figure>
+                  <div className="card-body">
+                    <h2 className="card-title">
+                      {cocktail.strDrink}
+                      {cocktail.strAlcoholic == "Alcoholic" && <div className="badge badge-error cursor-default">{cocktail.strAlcoholic}</div>}
+                      {cocktail.strAlcoholic == "Optional alcohol" && <div className="badge badge-warning cursor-default">{cocktail.strAlcoholic}</div>}
+                    </h2>
+                    <p className="mt-2 mb-4">{cocktail.strInstructions}</p>
+                    <div className="card-actions justify-end">
+                      <div className="badge badge-secondary cursor-default" title="Glass">{cocktail.strGlass}</div>
+                      <div className="badge badge-outline cursor-default" title="Category">{cocktail.strCategory}</div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
         </div>
       </div>
 
