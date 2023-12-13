@@ -24,10 +24,10 @@ export default function NavBar() {
                             <summary>About...</summary>
                             <ul className="p-2 bg-base-100">
                                 <li>
-                                    <a>...Me</a>
+                                    <Link href="/about/me">...Me</Link>
                                 </li>
                                 <li>
-                                    <a>...the Page</a>
+                                    <Link href="/about/it">...the Page</Link>
                                 </li>
                             </ul>
                         </details>

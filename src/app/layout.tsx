@@ -27,10 +27,10 @@ export default function RootLayout({
       <link rel="icon" href="/icon.svg" sizes="any" />
       <body className={inter.className} data-theme="synthwave">
         <Providers>
-          {/* <NavBar /> */}
+          <NavBar />
 
           {/* NAVBAR */}
-          <div className="navbar bg-base-100 fixed z-40">
+          {/* <div className="navbar bg-base-100 fixed z-40">
             <div className="flex-1">
               <Link href="/" className="btn btn-ghost normal-case text-xl">The Cocktails DB</Link>
             </div>
@@ -60,7 +60,7 @@ export default function RootLayout({
               </ul>
 
             </div>
-          </div>
+          </div> */}
 
           {/* PAGE */}
           <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-neutral mx-auto px-4">
