@@ -8,7 +8,7 @@ export default function NavBar() {
 
 
     return (
-        <div className="navbar bg-base-100 fixed">
+        <div className="navbar bg-base-100 fixed z-40">
             <div className="flex-1">
                 <Link href="/" className="btn btn-ghost normal-case text-xl">The Cocktails DB</Link>
             </div>

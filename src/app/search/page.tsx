@@ -5,6 +5,7 @@ import CocktailContext from "@/providers/CocktailContext";
 import { Cocktail } from "@/types/CocktailTypes";
 import Image from "next/image";
 import { useContext, useEffect } from "react";
+import { PropagateLoader } from "react-spinners";
 
 export default function AllCocktails() {
   const {
@@ -54,7 +55,15 @@ export default function AllCocktails() {
       {/* START: Listing */}
 
       <div className="mt-10">
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8">
+        {cocktailsPending && (
+          <div className="flex justify-center mt-20">
+            <PropagateLoader
+            size={25}
+            color="#1fccde"
+            />
+          </div>
+        )}
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 gap-8">
           {!cocktailsPending &&
             cocktails.length != 0 &&
             cocktails
@@ -86,8 +95,8 @@ export default function AllCocktails() {
                     <Image
                       src={cocktail.strDrinkThumb}
                       alt={`Picture of ${cocktail.strDrink}`}
-                      width={300}
-                      height={300}
+                      width={250}
+                      height={250}
                       className="mt-4 rounded-md"
                     />
                   </figure>

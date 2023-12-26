@@ -3,6 +3,7 @@
 import CocktailContext from "@/providers/CocktailContext";
 import { useContext, useEffect } from "react";
 import Image from "next/image";
+import { BounceLoader } from "react-spinners";
 
 export default function MainCocktailImg() {
 
@@ -20,13 +21,20 @@ export default function MainCocktailImg() {
 
     return (
         <>
+            {!heroCocktail && (
+                <div className="mb-20">
+                    <BounceLoader 
+                    color="#1fccde"
+                    />
+                </div>
+            )}
             {heroCocktail && (
                 <Image
                     src={heroCocktail && !heroCocktailPending && heroCocktail.strDrinkThumb}
                     priority={false}
-                    width={200}
-                    height={500}
-                    className="max-w-sm h-auto w-auto rounded-lg shadow-2xl"
+                    width={250}
+                    height={400}
+                    className="max-w-sm h-auto w-auto rounded-lg shadow-2xl mb-4"
                     alt={""}
                 />
             )}
