@@ -9,7 +9,8 @@ export default function Drawer({ children }: any) {
 
     const {
         drawerOpen,
-        setDrawerOpen
+        setDrawerOpen,
+        drawerClosing
     } = useContext(UIContext);
 
     const pathname = usePathname();
@@ -20,7 +21,7 @@ export default function Drawer({ children }: any) {
     }, [pathname])
 
     return (
-        <div id="drawer" className={`fixed md:hidden right-0 top-16 bg-base-100 min-h-screen ${drawerOpen ? "w-2/3 animate-open-drawer" : "w-0"}`}>
+        <div id="drawer" className={`fixed md:hidden right-0 top-16 bg-base-100 min-h-screen ${drawerOpen ? "w-2/3 animate-open-drawer" : `w-0 ${drawerClosing && "animate-close-drawer"}`}`}>
             {children}
         </div>
     )

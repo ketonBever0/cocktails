@@ -9,14 +9,18 @@ export default function HamburgerBtn() {
 
     const {
         drawerOpen,
-        toggleDrawer
+        toggleDrawer,
+        closeDrawer
     } = useContext(UIContext);
 
 
     return (
         <button
             className="btn"
-            onClick={() => { toggleDrawer() }}
+            onClick={() => {
+                if (!drawerOpen) toggleDrawer();
+                else closeDrawer();
+            }}
         >
             {
                 drawerOpen ?
